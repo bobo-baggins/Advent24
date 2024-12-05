@@ -4,6 +4,7 @@ SfeCnt = 0 # Int storing count of safe reports
 Flg = [0,0] #Tracks if levels in report are ascending or descing
 DngrLvl = 0
 Diff = []
+ShftLst = []
 with open('Advent_2_input.txt', 'r') as file:
     for line in file:
         Report = line
@@ -12,26 +13,29 @@ with open('Advent_2_input.txt', 'r') as file:
 
 for Report in RprtLst:
     Diff.clear()
+    ShftLst.clear()
     DngrLvl = 0
 
     for j in range(len(Report)-1):
         Diff.append(Report[j+1]-Report[j])
 
     for index, i in enumerate(Diff):
-        if index == 0:
-            Flg = [0,0] if i < 0 else [1,1]
-        if index != 0:
-            Flg[1] = 0 if i < 0 else 1
-            if i ==0:
-                Flg[1]=2
-            if Flg[1] != Flg[0]:
+        if i == 0:
+             ShftLst.append(0)
+        else:
+            ShftLst.append( 1 ) if i > 0 else ShftLst.append(-1)
+
+        if abs(i) > 3 or i == 0:
                 DngrLvl += 1
-            Flg[0] = Flg[1]
-        if abs(i) > 3:
-                DngrLvl += 1
-    if DngrLvl >1:
+                continue
+    if abs(sum(ShftLst)) < len(Diff)-1 and DngrLvl > 1:
+         DngrLvl += 1
+
+    if DngrLvl == 2 or DngrLvl == 3:
         print(Report)
         print(Diff)
+        print(ShftLst)
+      #  print(abs(sum(ShftLst)))
         print(DngrLvl)
     if DngrLvl < 2:
         SfeCnt +=1
