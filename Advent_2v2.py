@@ -1,5 +1,5 @@
 def Report_Review():
-    with open("Advent_2.txt", "r") as file:
+    with open("Advent_2_input.txt", "r") as file:
         lines = file.readlines()
         for line in lines:
             print(line)
