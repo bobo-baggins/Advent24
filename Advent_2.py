@@ -1,7 +1,6 @@
 
 RprtLst = [] #A list of list, indivual elements are levels from each report which is a list onto itself
 SfeCnt = 0 # Int storing count of safe reports
-Flg = [0,0] #Tracks if levels in report are ascending or descing
 DngrLvl = 0
 Diff = []
 ShftLst = []
@@ -35,7 +34,6 @@ for Report in RprtLst:
         print(Report)
         print(Diff)
         print(ShftLst)
-      #  print(abs(sum(ShftLst)))
         print(DngrLvl)
     if DngrLvl < 2:
         SfeCnt +=1
